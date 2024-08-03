@@ -115,7 +115,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
                         <a class="collapse-item" href="{{route('backend.foodCategory')}}">Food Categories</a>
-                        <a class="collapse-item" href="#">Foods</a>
+                        <a class="collapse-item" href="{{route('backend.food')}}">Foods</a>
                         <!-- <a class="collapse-item" href="{{route('login')}}">Login</a> -->
                         <!-- <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->float('price');
-            $table->float('discount')->nullable();
+            // $table->float('discount')->nullable();
             // $table->string('rank');
             // $table->boolean('feature_food_key');
             // $table->text('description');

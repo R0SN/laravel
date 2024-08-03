@@ -20,16 +20,18 @@
                         </tr>
                     </thead>
                     <div class="form-group">
-                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">Add Category</a>
-
+                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">Add Category</a>
                     </div>
                     <tbody>
                         @foreach($categories as $key => $category)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $category->name}}</td>
+                            <td>{{ $category->name }}</td>
                             <td>
-                                <a href="{{ route('backend.category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
+                                <!-- Trigger the specific modal for this category -->
+                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#editCategoryModal-{{ $category->id }}">
+                                    Edit
+                                </a>
                                 <form style="display: inline-block" method="POST" action="{{ route('backend.category.destroy', $category->id) }}">
                                     @csrf
                                     @method('DELETE')
@@ -37,17 +39,44 @@
                                 </form>
                             </td>
                         </tr>
+
+                        <!-- Edit Category Modal for this specific category -->
+                        <div class="modal fade" id="editCategoryModal-{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel-{{ $category->id }}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editCategoryModalLabel-{{ $category->id }}">Edit Category</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <form action="{{ route('backend.category.update', $category->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="editCategoryName-{{ $category->id }}">Category Name</label>
+                                                <input type="text" class="form-control" id="editCategoryName-{{ $category->id }}" name="name" value="{{ $category->name }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
 </div>
-</div>
-<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -56,6 +85,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
+            
             <form action="{{ route('foodCategories.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
@@ -67,33 +97,6 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Add Category</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Edit Category Modal -->
-<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="" method="POST" id="editCategoryForm">
-                @csrf
-                @method('PUT')
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="editCategoryName">Category Name</label>
-                        <input type="text" class="form-control" id="editCategoryName" name="name" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
                 </div>
             </form>
         </div>
