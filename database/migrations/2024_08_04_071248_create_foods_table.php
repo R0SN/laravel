@@ -20,7 +20,7 @@ return new class extends Migration
             // $table->string('rank');
             // $table->boolean('feature_food_key');
             // $table->text('description');
-            $table->string('image');
+            $table->string('img');
             // $table->string('featured_image');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();

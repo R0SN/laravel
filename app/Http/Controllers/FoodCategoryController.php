@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\FoodCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class FoodCategoryController extends Controller
 {
     // Method to list categories
     public function index()
     {
         $categories = FoodCategory::orderBy('name')->get();
-        // Send data from controller to view
         return view('backend.foodCategory', compact('categories'));
     }
 
@@ -22,46 +23,28 @@ class FoodCategoryController extends Controller
         return redirect()->route('backend.foodCategory')->with('success', 'Category deleted successfully');
     }
 
-    // Method to show the edit form
-    public function edit($id)
-    {
-        $categories = FoodCategory::findOrFail($id);
-        return view('backend.foodCategory', compact('categories'));
-    }
-    
-
-    
+    // Method to store a new category
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string',
         ]);
 
         $data = $request->all();
-        $data['created_by'] = Auth::id(); // Ensure `created_by` is set to authenticated user ID
-
-        // if ($request->hasFile('image')) {
-        //     $file = $request->file('image');
-        //     $fileName = time() . '_' . $file->getClientOriginalName();
-        //     $file->move(public_path('assets/images/coffee'), $fileName);
-        //     $data['image'] = $fileName;
-        // }
+        $data['created_by'] = Auth::id();
 
         if (FoodCategory::create($data)) {
-            $request->session()->flash('success', 'Category created successfully');
+            return redirect()->route('backend.foodCategory')->with('success', 'Category created successfully');
         } else {
-            $request->session()->flash('error', 'Category creation failed');
+            return redirect()->route('backend.foodCategory')->with('error', 'Category creation failed');
         }
-
-        return redirect()->route('backend.foodCategory');
     }
-    
 
     // Method to update a category
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required|string|max:255'
         ]);
 
         $categories = FoodCategory::findOrFail($id);
@@ -72,5 +55,3 @@ class FoodCategoryController extends Controller
         }
     }
 }
-
-

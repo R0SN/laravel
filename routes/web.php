@@ -24,7 +24,10 @@ Route::get('/backend/foodCategory',function(){
     return view('backend.foodCategory');
 })->name('backend.foodCategory');
 
-Route::get('/backend/food', [FoodController::class, 'index'])->name('backend.food');
+Route::get('/backend/editFood',function(){
+    return view('backend.editFoodItem');
+})->name('backend.editFood');
+
 
 
 Route::get('/categories', [FoodCategoryController::class, 'index'])->name('backend.foodCategory');
@@ -33,4 +36,10 @@ Route::get('/categories/{id}/edit', [FoodCategoryController::class, 'edit'])->na
 Route::put('/categories/{id}', [FoodCategoryController::class, 'update'])->name('backend.category.update');
 Route::post('/food-categories', [FoodCategoryController::class, 'store'])->name('foodCategories.store');
 // Route::put('/food-categories/{id}', [FoodCategoryController::class, 'update'])->name('foodCategories.update');
-  
+
+
+Route::post('/food-item', [FoodController::class, 'store'])->name('backend.food.store');
+Route::get('/backend/food', [FoodController::class, 'index'])->name('backend.food');
+Route::delete('/food/{id}', [FoodController::class, 'destroy'])->name('backend.food.destroy');
+Route::get('/foods/{id}/edit', [FoodController::class, 'edit'])->name('backend.food.edit');
+Route::put('/foods/{id}', [FoodController::class, 'update'])->name('backend.food.update');

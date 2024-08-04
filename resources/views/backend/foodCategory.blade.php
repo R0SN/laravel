@@ -57,6 +57,9 @@
                                             <div class="form-group">
                                                 <label for="editCategoryName-{{ $category->id }}">Category Name</label>
                                                 <input type="text" class="form-control" id="editCategoryName-{{ $category->id }}" name="name" value="{{ $category->name }}" required>
+                                                @if ($errors->has('name'))
+                                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -85,13 +88,13 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            
+
             <form action="{{ route('foodCategories.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="categoryName">Category Name</label>
-                        <input type="text" class="form-control" id="categoryName" name="name" required>
+                        <input type="text" class="form-control" id="categoryName" name="name" value="{{ old('name') }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
