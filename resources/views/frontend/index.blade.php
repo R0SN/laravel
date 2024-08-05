@@ -85,53 +85,36 @@
        <!-- ============ Pricing  ============= -->
 
 
-        <section id ="pricing" class="description_content">
-             <div class="pricing background_content">
-                <h1><span>Affordable</span> pricing</h1>
+       <section id="pricing" class="description_content">
+     <div class="pricing background_content">
+        <h1><span>Affordable</span> pricing</h1>
+     </div>
+     <div class="text-content container"> 
+         <div class="container">
+             <div class="row">
+                 <div id="w">
+                     <!-- Filter List -->
+                     <ul id="filter-list" class="clearfix">
+                         <li class="filter" data-filter="all">All</li>
+                         @foreach($categories as $category)
+                         <li class="filter" data-filter="{{ $category->name }}">{{ $category->name }}</li>
+                         @endforeach
+                     </ul><!-- @end #filter-list -->    
+                     
+                     <!-- Portfolio Items -->
+                     <ul id="portfolio">
+                         @foreach($foods as $food)
+                         <li class="item {{ $food->category->name }}">
+                             <img src="{{ asset('assets/images/FoodItems/' . $food->img) }}" alt="{{ $food->name }}">
+                             <h2 class="white">${{ $food->price }}</h2>
+                         </li>
+                         @endforeach
+                     </ul><!-- @end #portfolio -->
+                 </div><!-- @end #w -->
              </div>
-            <div class="text-content container"> 
-                <div class="container">
-                    <div class="row">
-                        <div id="w">
-                            <ul id="filter-list" class="clearfix">
-                                <li class="filter" data-filter="all">All</li>
-                                <li class="filter" data-filter="breakfast">Breakfast</li>
-                                <li class="filter" data-filter="special">Special</li>
-                                <li class="filter" data-filter="desert">Desert</li>
-                                <li class="filter" data-filter="dinner">Dinner</li>
-                            </ul><!-- @end #filter-list -->    
-                            <ul id="portfolio">
-                                <li class="item breakfast"><img src="{{asset('assets/frontend/images/food_icon01.jpg')}}" alt="Food" >
-                                    <h2 class="white">$20</h2>
-                                </li>
-
-                                <li class="item dinner special"><img src="{{asset('assets/frontend/images/food_icon02.jpg')}}" alt="Food" >
-                                    <h2 class="white">$20</h2>
-                                </li>
-                                <li class="item dinner breakfast"><img src="{{asset('assets/frontend/images/food_icon03.jpg')}}" alt="Food" >
-                                    <h2 class="white">$18</h2>
-                                </li>
-                                <li class="item special"><img src="{{asset('assets/frontend/images/food_icon04.jpg')}}" alt="Food" >
-                                    <h2 class="white">$15</h2>
-                                </li>
-                                <li class="item dinner"><img src="{{asset('assets/frontend/images/food_icon05.jpg')}}" alt="Food" >
-                                    <h2 class="white">$20</h2>
-                                </li>
-                                <li class="item special"><img src="{{asset('assets/frontend/images/food_icon06.jpg')}}" alt="Food" >
-                                    <h2 class="white">$22</h2>
-                                </li>
-                                <li class="item desert"><img src="{{asset('assets/frontend/images/food_icon07.jpg')}}" alt="Food" >
-                                    <h2 class="white">$32</h2>
-                                </li>
-                                <li class="item desert breakfast"><img src="{{asset('assets/frontend/images/food_icon08.jpg')}}" alt="Food" >
-                                    <h2 class="white">$38</h2>
-                                </li>
-                            </ul><!-- @end #portfolio -->
-                        </div><!-- @end #w -->
-                    </div>
-                </div>
-            </div>  
-        </section>
+         </div>
+     </div>  
+ </section>
 
 
         <!-- ============ Our Beer  ============= -->

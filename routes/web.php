@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Food;
 use App\Http\Controllers\FoodCategoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\frontend\IndexController;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+// Route::get('/pricing', [FoodController::class, 'index'])->name('pricing');
+Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/login',function (){
     return view('user.login');
@@ -43,3 +46,5 @@ Route::get('/backend/food', [FoodController::class, 'index'])->name('backend.foo
 Route::delete('/food/{id}', [FoodController::class, 'destroy'])->name('backend.food.destroy');
 Route::get('/foods/{id}/edit', [FoodController::class, 'edit'])->name('backend.food.edit');
 Route::put('/foods/{id}', [FoodController::class, 'update'])->name('backend.food.update');
+
+
