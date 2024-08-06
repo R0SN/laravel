@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->string('phone');
+            $table->string('state');
             $table->string('subject');
-            $table->dateTime('reeservation_date_and_time');
+            $table->string('reservation_date_and_time');
             // $table->time('booking_time');
-            $table->integer('guest_nubmer');
+            $table->integer('guest_number');
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');

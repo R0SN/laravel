@@ -5,6 +5,7 @@ use App\Http\Controllers\Food;
 use App\Http\Controllers\FoodCategoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\frontend\IndexController;
+use App\Http\Controllers\ReservationController;
 
 // Route::get('/', function () {
 //     return view('frontend.index');
@@ -47,4 +48,7 @@ Route::delete('/food/{id}', [FoodController::class, 'destroy'])->name('backend.f
 Route::get('/foods/{id}/edit', [FoodController::class, 'edit'])->name('backend.food.edit');
 Route::put('/foods/{id}', [FoodController::class, 'update'])->name('backend.food.update');
 
+Route::post('/reserve', [IndexController::class, 'storeReservation'])->name('frontend.reserve');
+Route::get('/backend/reservations', [ReservationController::class, 'showReservations'])->name('backend.reservations')->middleware('auth');
+Route::delete('/reservation/{id}', [ReservationController::class, 'destroyReservation'])->name('backend.destroyReservation');
 

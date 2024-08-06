@@ -53,9 +53,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!-- <div class="sidebar-heading">
                 Settings
-            </div>
+            </div> -->
 <!-- 
             // Nav Item - Pages Collapse Menu 
             <li class="nav-item">
@@ -105,6 +105,11 @@
                     <span>Coments</span>
                 </a> -->
 
+               <a class="nav-link" href="{{route('backend.reservations')}}"  aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Reservation</span>
+                </a>
                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
