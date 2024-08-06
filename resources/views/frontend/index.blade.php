@@ -232,6 +232,11 @@
                                             {{ session('success') }}
                                         </div>
                                         @endif
+                                        @if (session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                        @endif
                                         <form id="contact-us" method="post" action="{{ route('frontend.reserve') }}">
                                             @csrf
                                             <!-- Name -->
@@ -263,13 +268,15 @@
                                 <div class="right-text">
                                     <h2>Hours</h2>
                                     <hr>
-                                    <p>Monday to Friday: 7:30 AM - 11:30 AM</p>
-                                    <p>Saturday & Sunday: 8:00 AM - 9:00 AM</p>
-                                    <p>Monday to Friday: 12:00 PM - 5:00 PM</p>
-                                    <p>Monday to Saturday: 6:00 PM - 1:00 AM</p>
-                                    <p>Sunday to Monday: 5:30 PM - 12:00 AM</p>
+                                    @foreach($openingHours as $day => $hours)
+                                    <p>{{ $day }}:</p>
+                                    @foreach($hours as $hour)
+                                    <p>{{ \Carbon\Carbon::parse($hour->opening_time)->format('h:i A') }} - {{ \Carbon\Carbon::parse($hour->closing_time)->format('h:i A') }}</p>
+                                    @endforeach
+                                    @endforeach
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <!-- Clear -->
@@ -365,6 +372,25 @@
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery-1.10.2.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/jquery.mixitup.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/frontend/js/main.js')}}"></script>
+
+    <script>
+        // Define a global variable to hold the scroll-to section ID
+        window.scrollToSection = "{{ session('scroll_to') }}";
+    </script>
+
+    <!-- Scroll to section script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.scrollToSection) {
+                const element = document.getElementById(window.scrollToSection);
+                if (element) {
+                    element.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    </script>
 
 </body>
 

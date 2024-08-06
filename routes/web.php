@@ -6,6 +6,8 @@ use App\Http\Controllers\FoodCategoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\frontend\IndexController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\OpeningHourController;
+use App\Http\Controllers\SettingsController;
 
 // Route::get('/', function () {
 //     return view('frontend.index');
@@ -42,7 +44,7 @@ Route::post('/food-categories', [FoodCategoryController::class, 'store'])->name(
 // Route::put('/food-categories/{id}', [FoodCategoryController::class, 'update'])->name('foodCategories.update');
 
 
-Route::post('/food-item', [FoodController::class, 'store'])->name('backend.food.store');
+Route::post('/food-item/store', [FoodController::class, 'store'])->name('backend.food.store');
 Route::get('/backend/food', [FoodController::class, 'index'])->name('backend.food');
 Route::delete('/food/{id}', [FoodController::class, 'destroy'])->name('backend.food.destroy');
 Route::get('/foods/{id}/edit', [FoodController::class, 'edit'])->name('backend.food.edit');
@@ -52,3 +54,12 @@ Route::post('/reserve', [IndexController::class, 'storeReservation'])->name('fro
 Route::get('/backend/reservations', [ReservationController::class, 'showReservations'])->name('backend.reservations')->middleware('auth');
 Route::delete('/reservation/{id}', [ReservationController::class, 'destroyReservation'])->name('backend.destroyReservation');
 
+Route::get('/opening-hours', [OpeningHourController::class, 'index'])->name('backend.opening-hours');
+Route::post('/opening-hours', [OpeningHourController::class, 'store'])->name('backend.opening-hours.store');
+Route::get('/opening-hours/{openingHour}/edit', [OpeningHourController::class, 'edit'])->name('backend.opening_hours.edit');
+Route::put('/opening-hours/{openingHour}', [OpeningHourController::class, 'update'])->name('backend.opening-hours.update');
+Route::delete('/opening-hours/{openingHour}', [OpeningHourController::class, 'destroy'])->name('backend.opening-hours.destroy');
+
+
+Route::get('/settings', [SettingsController::class, 'index'])->name('backend.settings');
+Route::put('/settings', [SettingsController::class, 'update'])->name('backend.settings.update');

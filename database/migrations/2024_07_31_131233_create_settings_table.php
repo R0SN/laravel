@@ -22,7 +22,6 @@ return new class extends Migration
             $table->text('about_beer')->nullable();
             $table->text('about_bread')->nullable();
             $table->text('food_description')->nullable();
-
             // $table->string('footer_logo')->nullable();
             // $table->bigInteger('phone_no');
             // $table->bigInteger('opt_phone_no')->nullable();
@@ -31,15 +30,14 @@ return new class extends Migration
             // $table->string('opt_email')->unique()->nullable();
             // $table->text('address');
             $table->string('google_map_link')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('github')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('gmail')->nullable();
+            $table->string('twitter_link')->nullable();
+            $table->string('github_link')->nullable();
+            $table->string('linkedin_link')->nullable();
+            $table->string('gmail_link')->nullable();
             // $table->string('facebook_link')->nullable();
             // $table->string('twitter_link')->nullable();
             // $table->string('instagram_link')->nullable();
             // $table->string('youtube_link')->nullable();
-            $table->text('opening_hours');
             $table->boolean('status')->default(0);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
