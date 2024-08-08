@@ -33,7 +33,7 @@
                         <input type="number" step="0.01" class="form-control" id="foodPrice" name="price" value="{{ old('price', $food->price) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="foodImage">Image (optional)</label>
+                        <label for="foodImage">Image</label>
                         <input type="file" class="form-control" id="foodImage" name="image">
                         @if ($food->img)
                         <img src="{{ asset('assets/images/FoodItems/' . $food->img) }}" width="50" height="50">

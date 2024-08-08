@@ -19,17 +19,27 @@ class FoodController extends Controller
     public function destroy($id)
     {
         $food = Food::findOrFail($id);
+
+        // Check if the food item has an image and delete it
+        if ($food->img && file_exists(public_path('assets/images/FoodItems/' . $food->img))) {
+            unlink(public_path('assets/images/FoodItems/' . $food->img));
+        }
+
+        // Delete the food item from the database
         $food->delete();
+
         return redirect()->route('backend.food')->with('success', 'Food item deleted successfully');
     }
+
+    
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'category_id' => 'required|exists:food_categories,id',
-        //     'price' => 'required|numeric',
-        //     'image' => 'required|file|mimes:jpg,jpeg,bmp,png|max:10000'
-        // ]);
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required|exists:food_categories,id',
+            'price' => 'required|numeric',
+            'foods_image' => 'required|file|mimes:jpg,jpeg,bmp,png|max:10000'
+        ]);
 
         $data = $request->only(['name', 'category_id', 'price']);
         $data['created_by'] = Auth::id();
@@ -74,6 +84,12 @@ class FoodController extends Controller
         $data = $request->only(['name', 'category_id', 'price']);
 
         if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($food->img && file_exists(public_path('assets/images/FoodItems/' . $food->img))) {
+                unlink(public_path('assets/images/FoodItems/' . $food->img));
+            }
+
+            // Handle the new image upload
             $file = $request->file('image');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('assets/images/FoodItems');

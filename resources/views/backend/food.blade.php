@@ -11,6 +11,7 @@
             </div>
             <div class="card-body">
                 @include('backend.includes.flash_message')
+               
                 <table class="table table-bordered table-responsive">
                     <thead>
                         <tr>
@@ -66,7 +67,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="foodName">Food Name</label>
-                        <input type="text" class="form-control" id="foodName" name="name" required >
+                        <input type="text" class="form-control" id="foodName" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="foodCategory">Category</label>
