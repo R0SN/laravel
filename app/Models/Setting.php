@@ -19,6 +19,7 @@ class Setting extends Model
         'about_beer',
         'about_bread',
         'food_description',
+        'phone_no',
         'google_map_link',
         'twitter_link',
         'github_link',

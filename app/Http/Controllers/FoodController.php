@@ -82,7 +82,6 @@ class FoodController extends Controller
         }
 
         $food->update($data);
-
         return redirect()->route('backend.food')->with('success', 'Food item updated successfully');
     }
 }

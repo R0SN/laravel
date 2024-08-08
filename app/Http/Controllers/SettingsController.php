@@ -26,7 +26,7 @@ class SettingsController extends Controller
             'about_beer' => 'nullable|string',
             'about_bread' => 'nullable|string',
             'food_description' => 'nullable|string',
-            'google_map_link' => 'nullable|url',
+            'google_map_link' => 'nullable|string',
             'twitter_link' => 'nullable|string',
             'github_link' => 'nullable|string',
             'linkedin_link' => 'nullable|string',
@@ -35,26 +35,34 @@ class SettingsController extends Controller
         ]);
 
         $settings = Setting::first();
+        $data = $request->all();
 
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('settings', 'public');
-            $settings->logo = $logoPath;
+            $file = $request->file('logo');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $destinationPath = public_path('assets/frontend/images');
+            $file->move($destinationPath, $fileName);
+            $data['logo'] = $fileName;
         }
 
         if ($request->hasFile('favicon')) {
-            $faviconPath = $request->file('favicon')->store('settings', 'public');
-            $settings->favicon = $faviconPath;
+            $file = $request->file('favicon');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $destinationPath = public_path('assets/frontend/images');
+            $file->move($destinationPath, $fileName);
+            $data['favicon'] = $fileName;
         }
 
         if ($request->hasFile('header_logo')) {
-            $headerLogoPath = $request->file('header_logo')->store('settings', 'public');
-            $settings->header_logo = $headerLogoPath;
+            $file = $request->file('header_logo');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $destinationPath = public_path('assets/frontend/images');
+            $file->move($destinationPath, $fileName);
+            $data['header_logo'] = $fileName;
         }
 
-        $settings->fill($request->except(['logo', 'favicon', 'header_logo']));
-        $settings->updated_by = Auth::id();
-        $settings->save();
+        $settings->update($data);
 
-        return redirect()->route('backend.settings.index')->with('success', 'Settings updated successfully');
+        return redirect()->route('backend.settings')->with('success', 'Settings updated successfully');
     }
 }

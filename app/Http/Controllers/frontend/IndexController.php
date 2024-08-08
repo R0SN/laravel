@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\OpeningHour;
+use App\Models\Setting;
 
 class IndexController extends Controller
 {
@@ -17,9 +18,11 @@ class IndexController extends Controller
         $foods = Food::with('category')->orderBy('name')->get(); // Fetch foods with category
         $categories = FoodCategory::orderBy('name')->get();
         $openingHours = OpeningHour::all()->groupBy('day_of_week');
+        $setting = Setting::first();
 
-        return view('frontend.index', compact('foods', 'categories','openingHours'));
+        return view('frontend.index', compact('foods', 'categories', 'openingHours', 'setting'));
     }
+
     public function storeReservation(Request $request)
     {
         $data = $request->all();

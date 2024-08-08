@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Restaurant</title>
+    <title>{{ $setting->website_name ?? 'Default Title' }}</title>
     <link rel="stylesheet" href="{{asset('assets/frontend/css/normalize.css')}}">
     <link rel="stylesheet" href="{{asset('assets/frontend/css/main.css')}}" media="screen" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="{{asset('assets/frontend/css/jquery-ui.css')}}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{asset('assets/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link rel="icon" href="{{asset('assets/frontend/favicon-1.ico')}}" type="image/x-icon">
-</head>
+    <link rel="icon" href="{{ asset('assets/frontend/images/' . $setting->favicon) }}" type="image/x-icon">
+    </head>
 
 <body>
 
@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Restaurant</a>
+                    <a class="navbar-brand" href="#">{{ $setting->website_name}}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,8 +53,8 @@
     <div id="top" class="starter_container bg">
         <div class="follow_container">
             <div class="col-md-6 col-md-offset-3">
-                <h2 class="top-title"> Restaurant</h2>
-                <h2 class="white second-title">" Best in the city "</h2>
+                <h2 class="top-title"> {{ $setting->website_name}}</h2>
+                <h2 class="white second-title">" {{$setting->slogan}} "</h2>
                 <hr>
             </div>
         </div>
@@ -67,7 +67,7 @@
             <div class="col-md-6">
                 <h1>About us</h1>
                 <div class="fa fa-cutlery fa-2x"></div>
-                <p class="desc-text">Restaurant is a place for simplicity. Good food, good beer, and good service. Simple is the name of the game, and we’re good at finding it in all the right places, even in your dining experience. We’re a small group from Denver, Colorado who make simple food possible. Come join us and see what simplicity tastes like.</p>
+                <p class="desc-text">{{$setting->about_website}}</p>
             </div>
             <div class="col-md-6">
                 <div class="img-section">
@@ -134,7 +134,7 @@
             <div class="col-md-6 col-md-offset-1">
                 <h1>OUR BEER</h1>
                 <div class="icon-beer fa-2x"></div>
-                <p class="desc-text">Here at Restaurant we’re all about the love of beer. New and bold flavors enter our doors every week, and we can’t help but show them off. While we enjoy the classics, we’re always passionate about discovering something new, so stop by and experience our craft at its best.</p>
+                <p class="desc-text">{{$setting->about_beer}}</p>
             </div>
         </div>
     </section>
@@ -151,11 +151,11 @@
             <div class="col-md-6">
                 <h1>OUR BREAD</h1>
                 <div class="icon-bread fa-2x"></div>
-                <p class="desc-text">We love the smell of fresh baked bread. Each loaf is handmade at the crack of dawn, using only the simplest of ingredients to bring out smells and flavors that beckon the whole block. Stop by anytime and experience simplicity at its finest.</p>
+                <p class="desc-text">{{$setting->about_bread}}</p>
             </div>
             <div class="col-md-6">
                 <img src="{{asset('assets/frontend/images/bread1.jpg')}}" width="260" alt="Bread">
-                <img src="{{asset('assets/frontend/images/bread1.jpg')}}" width="260" alt="Bread">
+                <!-- <img src="{{asset('assets/frontend/images/bread1.jpg')}}" width="260" alt="Bread"> -->
             </div>
         </div>
     </section>
@@ -172,7 +172,7 @@
             <div class="col-md-6">
                 <h1>Have a look to our dishes!</h1>
                 <div class="icon-hotdog fa-2x"></div>
-                <p class="desc-text">Each food is handmade at the crack of dawn, using only the simplest of ingredients to bring out smells and flavors that beckon the whole block. Stop by anytime and experience simplicity at its finest.</p>
+                <p class="desc-text">{{$setting->food_description}}</p>
             </div>
             <div class="col-md-6">
                 <ul class="image_box_story2">
@@ -294,15 +294,15 @@
             <div class="col-md-6">
                 <span class="social_heading">FOLLOW</span>
                 <ul class="social_icons">
-                    <li><a class="icon-twitter color_animation" href="#" target="_blank"></a></li>
-                    <li><a class="icon-github color_animation" href="#" target="_blank"></a></li>
-                    <li><a class="icon-linkedin color_animation" href="#" target="_blank"></a></li>
-                    <li><a class="icon-mail color_animation" href="#"></a></li>
+                    <li><a class="icon-twitter color_animation" href="{{$setting->twitter_link}}" target="_blank"></a></li>
+                    <li><a class="icon-github color_animation" href="{{$setting->github_link}}" target="_blank"> </a></li>
+                    <li><a class="icon-linkedin color_animation" href="{{$setting->linkedin_link}}" target="_blank"> </a></li>
+                    <li><a class="icon-mail color_animation" href="{{$setting->gmail_link}}" target="_blank"> </a></li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <span class="social_heading">OR DIAL</span>
-                <span class="social_info"><a class="color_animation" href="tel:883-335-6524">(941) 883-335-6524</a></span>
+                <span class="social_info"><a class="color_animation" href="tel:883-335-6524">{{$setting->phone_no}}</a></span>
             </div>
         </div>
     </section>
@@ -311,44 +311,7 @@
 
     <section id="contact">
         <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.664063989472!2d91.8316103150038!3d24.909437984030877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505558dd0be6a1%3A0x65c7e47c94b6dc45!2sTechnext!5e0!3m2!1sen!2sbd!4v1444461079802" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="inner contact">
-                        <!-- Form Area -->
-                        <div class="contact-form">
-                            <!-- Form -->
-                            <form id="contact-us" method="post" action="contact.php">
-                                <!-- Left Inputs -->
-                                <div class="col-md-6 ">
-                                    <!-- Name -->
-                                    <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
-                                    <!-- Email -->
-                                    <input type="email" name="email" id="email" required="required" class="form" placeholder="Email" />
-                                    <!-- Subject -->
-                                    <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" />
-                                </div><!-- End Left Inputs -->
-                                <!-- Right Inputs -->
-                                <div class="col-md-6">
-                                    <!-- Message -->
-                                    <textarea name="message" id="message" class="form textarea" placeholder="Message"></textarea>
-                                </div><!-- End Right Inputs -->
-                                <!-- Bottom Submit -->
-                                <div class="relative fullwidth col-xs-12">
-                                    <!-- Send Button -->
-                                    <button type="submit" id="submit" name="submit" class="form-btn">Send Message</button>
-                                </div><!-- End Bottom Submit -->
-                                <!-- Clear -->
-                                <div class="clear"></div>
-                            </form>
-                        </div><!-- End Contact Form Area -->
-                    </div><!-- End Inner -->
-                </div>
-            </div>
-        </div>
-    </section>
+        {!! $setting->google_map_link !!} </div>
 
     <!-- ============ Footer Section  ============= -->
 

@@ -64,23 +64,23 @@
                     </div>
                     <div class="form-group">
                         <label for="google_map_link">Google Map Link</label>
-                        <input type="url" class="form-control" id="google_map_link" name="google_map_link" value="{{ old('google_map_link', $settings->google_map_link) }}">
+                        <input type="text" class="form-control" id="google_map_link" name="google_map_link" value="{{ $settings->google_map_link }}">
                     </div>
                     <div class="form-group">
                         <label for="twitter">Twitter</label>
-                        <input type="text" class="form-control" id="twitter" name="twitter" value="{{ old('twitter', $settings->twitter_link) }}">
+                        <input type="text" class="form-control" id="twitter" name="twitter_link" value="{{  $settings->twitter_link }}">
                     </div>
                     <div class="form-group">
                         <label for="github">GitHub</label>
-                        <input type="text" class="form-control" id="github" name="github" value="{{ old('github', $settings->github_link) }}">
+                        <input type="text" class="form-control" id="github" name="github_link" value="{{ $settings->github_link }}">
                     </div>
                     <div class="form-group">
                         <label for="linkedin">LinkedIn</label>
-                        <input type="text" class="form-control" id="linkedin" name="linkedin" value="{{ old('linkedin', $settings->linkedin_link) }}">
+                        <input type="text" class="form-control" id="linkedin" name="linkedin_link" value="{{ $settings->linkedin_link }}">
                     </div>
                     <div class="form-group">
                         <label for="gmail">Gmail</label>
-                        <input type="text" class="form-control" id="gmail" name="gmail" value="{{ old('gmail', $settings->gmail_link) }}">
+                        <input type="text" class="form-control" id="gmail" name="gmail_link" value="{{ $settings->gmail_link }}">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>

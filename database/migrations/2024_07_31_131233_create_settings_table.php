@@ -23,13 +23,13 @@ return new class extends Migration
             $table->text('about_bread')->nullable();
             $table->text('food_description')->nullable();
             // $table->string('footer_logo')->nullable();
-            // $table->bigInteger('phone_no');
+            $table->bigInteger('phone_no');
             // $table->bigInteger('opt_phone_no')->nullable();
             // $table->bigInteger('mobile_no');
             // $table->string('email')->unique();
             // $table->string('opt_email')->unique()->nullable();
             // $table->text('address');
-            $table->string('google_map_link')->nullable();
+            $table->text('google_map_link')->nullable();
             $table->string('twitter_link')->nullable();
             $table->string('github_link')->nullable();
             $table->string('linkedin_link')->nullable();
