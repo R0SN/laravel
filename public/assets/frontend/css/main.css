@@ -627,6 +627,10 @@ MEDIA QUERIES TABLET
         text-decoration: none;
         color: white !important;
     }
+    .header_logo{
+        height: 50px;
+        width: 50px;
+    }
     nav {
         position: fixed;
         display: block;

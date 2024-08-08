@@ -17,6 +17,9 @@
                     <div class="form-group">
                         <label for="foodName">Food Name</label>
                         <input type="text" class="form-control" id="foodName" name="name" value="{{ old('name', $food->name) }}" required>
+                        @if ($errors->has('name'))
+                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="foodCategory">Category</label>
@@ -27,16 +30,25 @@
                             </option>
                             @endforeach
                         </select>
+                        @if ($errors->has('category_id'))
+                        <span class="text-danger">{{ $errors->first('category_id') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="foodPrice">Price</label>
                         <input type="number" step="0.01" class="form-control" id="foodPrice" name="price" value="{{ old('price', $food->price) }}" required>
+                        @if ($errors->has('price'))
+                        <span class="text-danger">{{ $errors->first('price') }}</span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="foodImage">Image</label>
                         <input type="file" class="form-control" id="foodImage" name="image">
                         @if ($food->img)
                         <img src="{{ asset('assets/images/FoodItems/' . $food->img) }}" width="50" height="50">
+                        @endif
+                        @if ($errors->has('foods_image'))
+                        <span class="text-danger">{{ $errors->first('foods_image') }}</span>
                         @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Update Food Item</button>

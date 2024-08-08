@@ -30,6 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <img src="{{ asset('assets/frontend/images/' . $setting->logo) }}" class="header_logo" >
                     <a class="navbar-brand" href="#">{{ $setting->website_name}}</a>
                 </div>
 
@@ -155,7 +156,7 @@
             </div>
             <div class="col-md-6">
                 <img src="{{asset('assets/frontend/images/bread1.jpg')}}" width="260" alt="Bread">
-                <!-- <img src="{{asset('assets/frontend/images/bread1.jpg')}}" width="260" alt="Bread"> -->
+                <img src="{{asset('assets/frontend/images/bread.jpg')}}" width="260" alt="Bread">
             </div>
         </div>
     </section>

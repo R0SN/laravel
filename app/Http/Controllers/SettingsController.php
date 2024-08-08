@@ -33,36 +33,54 @@ class SettingsController extends Controller
             'gmail_link' => 'nullable|string',
             'status' => 'nullable|boolean',
         ]);
-
+    
         $settings = Setting::first();
         $data = $request->all();
-
+    
+        // Handle logo update
         if ($request->hasFile('logo')) {
+            // Delete the old logo if it exists
+            if ($settings->logo && file_exists(public_path('assets/frontend/images/' . $settings->logo))) {
+                unlink(public_path('assets/frontend/images/' . $settings->logo));
+            }
+    
             $file = $request->file('logo');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('assets/frontend/images');
             $file->move($destinationPath, $fileName);
             $data['logo'] = $fileName;
         }
-
+    
+        // Handle favicon update
         if ($request->hasFile('favicon')) {
+            // Delete the old favicon if it exists
+            if ($settings->favicon && file_exists(public_path('assets/frontend/images/' . $settings->favicon))) {
+                unlink(public_path('assets/frontend/images/' . $settings->favicon));
+            }
+    
             $file = $request->file('favicon');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('assets/frontend/images');
             $file->move($destinationPath, $fileName);
             $data['favicon'] = $fileName;
         }
-
+    
+        // Handle header_logo update
         if ($request->hasFile('header_logo')) {
+            // Delete the old header logo if it exists
+            if ($settings->header_logo && file_exists(public_path('assets/frontend/images/' . $settings->header_logo))) {
+                unlink(public_path('assets/frontend/images/' . $settings->header_logo));
+            }
+    
             $file = $request->file('header_logo');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $destinationPath = public_path('assets/frontend/images');
             $file->move($destinationPath, $fileName);
             $data['header_logo'] = $fileName;
         }
-
+    
         $settings->update($data);
-
+    
         return redirect()->route('backend.settings')->with('success', 'Settings updated successfully');
     }
-}
+    }
